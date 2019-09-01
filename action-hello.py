@@ -34,10 +34,10 @@ def action_wrapper(hermes, intentMessage, conf):
 
     current_session_id = intentMessage.session_id
 
-    hermes.publish_continue_session(current_session_id, "Feliz cumpleaños Ricky. He analizado tus perfiles en redes sociales y las faciones biométricas de tu rostro muestran que estás disfrutando", [])
+    hermes.publish_end_session(current_session_id, "Feliz...")
     time.sleep(10)
-    hermes.publish_continue_session(current_session_id, "Sí, ¡que te tires un peo!", [])
-    hermes.publish_end_session(current_session_id, "")
+    #hermes.publish_continue_session(current_session_id, "Sí, ¡que te tires un peo!", [])
+    hermes.publish_end_session(current_session_id, "Sí, ¡que te tires un peo!")
 
 
 if __name__ == "__main__":
