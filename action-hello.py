@@ -6,6 +6,7 @@ from hermes_python.hermes import Hermes
 from hermes_python.ffi.utils import MqttOptions
 from hermes_python.ontology import *
 import io
+import time
 
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
