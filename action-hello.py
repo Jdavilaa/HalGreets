@@ -34,7 +34,7 @@ def action_wrapper(hermes, intentMessage, conf):
 
     current_session_id = intentMessage.session_id
 
-    #hermes.publish_continue_session(current_session_id, "Primero", [])
+    hermes.publish_continue_session(current_session_id, "Primero", [])
     #time.sleep(10)
     hermes.publish_end_session(current_session_id, "Segundo")
 
