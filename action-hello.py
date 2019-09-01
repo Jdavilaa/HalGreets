@@ -5,6 +5,7 @@ import ConfigParser
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import io
+import time
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
@@ -30,10 +31,16 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 def action_wrapper(hermes, intentMessage, conf):
     current_session_id = intentMessage.session_id
-    hermes.publish_end_session(current_session_id, "Hello World")
+
+    init = Dict(:type => "notification",
+                :text => text)
+
+    hermes.publish_continue_session(current_session_id, "Primero", [])
+    #time.sleep(10)
+    hermes.publish_end_session(current_session_id, "Segundo")
 
 
 if __name__ == "__main__":
-    with Hermes("localhost:1883") as h:
+    with Hermes("localhost:1883", rust_logs_enabled=True) as h:
         h.subscribe_intent("CrystalMethod:hello", subscribe_intent_callback) \
          .start()
