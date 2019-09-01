@@ -35,8 +35,8 @@ def action_wrapper(hermes, intentMessage, conf):
 
     current_session_id = intentMessage.session_id
 
-    hermes.publish_end_session(current_session_id, "")
-    hermes.publish_end_session(current_session_id, "Feliz...")
+    hermes.publish_end_session(current_session_id, "Feliz")
+    hermes.publish_end_session(current_session_id, "cumpleaños")
     #hermes.publish_continue_session(current_session_id, "Feliz...", ["jdavila:algomas"])
     time.sleep(10)
     hermes.publish_end_session(current_session_id, "Sí, ¡que te tires un peo!")
