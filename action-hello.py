@@ -26,27 +26,34 @@ def read_configuration_file(configuration_file):
     except (IOError, configparser.Error) as e:
         return dict()
 
-def subscribe_intent_callback(hermes, intentMessage):
+def subscribe_intent_callback1(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
-    action_wrapper(hermes, intentMessage, conf)
+    action_wrapper1(hermes, intentMessage, conf)
 
+def subscribe_intent_callback2(hermes, intentMessage):
+    conf = read_configuration_file(CONFIG_INI)
+    action_wrapper2(hermes, intentMessage, conf)
 
-def action_wrapper(hermes, intentMessage, conf):
+def action_wrapper1(hermes, intentMessage, conf):
 
     current_session_id = intentMessage.session_id
 
-    #hermes.publish_end_session(current_session_id, "Feliz")
-    hermes.publish_continue_session(current_session_id, "Feliz...", [])
-    time.sleep(10)
-    hermes.publish_continue_session(current_session_id, "Sí, ¡que te tires un peo!", [])
-    time.sleep(10)
-    hermes.publish_end_session(current_session_id, "adiós")
+    hermes.publish_end_session(current_session_id, "Feliz cumpleaños Ricardo. He analizado tus perfiles en redes sociales y las faciones biométricas de tu rostro muestran que estás disfrutando")
+    #hermes.publish_continue_session(current_session_id, "Feliz...", [])
+
+def action_wrapper2(hermes, intentMessage, conf):
+
+    current_session_id = intentMessage.session_id
+
+    hermes.publish_end_session(current_session_id, "Sí, que te tires un peo")
 
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
-        h.subscribe_intent("jdavila:convers", subscribe_intent_callback) \
+        h.subscribe_intent("jdavila:convers", subscribe_intent_callback1) \
+         .start()
+        h.subscribe_intent("jdavila:algomas", subscribe_intent_callback2) \
          .start()
 
 
