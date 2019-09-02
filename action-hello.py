@@ -37,8 +37,10 @@ def action_wrapper(hermes, intentMessage, conf):
 
     #hermes.publish_end_session(current_session_id, "Feliz")
     hermes.publish_continue_session(current_session_id, "Feliz...", [])
-    #time.sleep(10)
-    hermes.publish_end_session(current_session_id, "Sí, ¡que te tires un peo!")
+    time.sleep(10)
+    hermes.publish_continue_session(current_session_id, "Sí, ¡que te tires un peo!", [])
+    time.sleep(10)
+    hermes.publish_end_session(current_session_id, "adiós")
 
 
 if __name__ == "__main__":
